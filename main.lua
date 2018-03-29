@@ -70,6 +70,26 @@ local bkg = display.newImage("Images/bkg.png", 0, 0)
 	-- send to back
 	bkg:toBack()
 
+---------------------------------------------------------------------------------------------------------
+
+-- create a wall beam
+local wallBeam = display.newImage("Images/beam.png", 0, 0)
+
+	-- set the x and y pos
+	wallBeam.x = 1000
+	wallBeam.y = display.contentCenterY*1.65
+
+	-- rotate the beam -60 degrees so its on an angle
+	wallBeam:rotate(90)
+
+	-- set the beam size
+	wallBeam.width = 1500
+	wallBeam.height = display.contentHeight/10
+
+	-- add to physics
+	physics.addBody(wallBeam, "static", {friction=0.5, bounce=0.3})
+
+
 -----------------------------------------------------------------------------------------------------------
 -- FUNCTIONS
 -----------------------------------------------------------------------------------------------------------
@@ -86,7 +106,7 @@ end
 ------------------------------------------------------------------------------------------------------------
 
 local function secondBall()
-	-- creating first ball
+	-- creating second ball
 	local ball2 = display.newImage("Images/super_ball.png", 0, 0)
 
 	-- adding to physics
@@ -96,11 +116,39 @@ local function secondBall()
 	ball2:scale(0.5, 0.5)
 end
 
+-----------------------------------------------------------------------------------------------------------
+
+local function thirdBall()
+	-- creating third ball
+	local ball3 = display.newImage("Images/super_ball.png", 0, 0)
+
+	-- adding to physics 
+	physics.addBody(ball3, {density=1.0, friction=0.5, bounce=0.3, radius=50})
+
+	-- make it bigger than the original size
+	ball3:scale(2.0, 2.0)
+end
+
+----------------------------------------------------------------------------------------------------------
+
+local function fourthBall()
+	-- creating fourth ball
+	local ball4 = display.newImage("Images/super_ball.png", 0, 0)
+
+	-- adding to physics 
+	physics.addBody(ball4, {density=1.2, friction=0.6, bounce=0.4, radius=100})
+
+	-- make it bigger than the original size
+	ball4:scale(4.0, 4.0)
+end
+
 ----------------------------------------------------------------------------------------------------------
 -- TIMER DELAYS - call each function after the given millisecond
 ----------------------------------------------------------------------------------------------------------
 timer.performWithDelay( 0, firstBall)
 timer.performWithDelay( 500, secondBall)
+timer.performWithDelay( 1000, thirdBall)
+timer.performWithDelay( 1250, fourthBall)
 
 
 
